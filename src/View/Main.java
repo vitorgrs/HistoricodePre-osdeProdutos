@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         Cadastrar cadastrar = new Cadastrar();
-        Informar informar = new Informar();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -15,16 +14,33 @@ public class Main {
         do {
             System.out.println("Escolha uma opção:");
             System.out.println("1 - Cadastrar Produto");
-            System.out.println("2 - falta fazer");
-            System.out.println("3 - faltar fazer");
-            System.out.println("4 - Sair");
+            System.out.println("2 - Exibir Preços dos Produtos");
+            System.out.println("3 - Buscar menor preço atual para um produto");
+            System.out.println("4 - Obter o histórico de preços de um produto ao longo de todos os sites");
+            System.out.println("5 - Sair");
 
             opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    cadastrar.cadastrarProduto();
+                    System.out.println("Escolha uma opção:");
+                    System.out.println("1 - Cadastrar um produto pegando os dados do arquivo");
+                    System.out.println("2 - Cadastrar um produto inserindo os dados do arquivo");
+                    int escolhaOpcao = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (escolhaOpcao) {
+                        case 1:
+                            cadastrar.cadastrarProdutoFromFile();
+                            break;
+                        case 2:
+                            cadastrar.cadastrarProduto();
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            break;
+                    }
                     break;
                 case 2:
                     System.out.println("Escolha uma opção:");
@@ -36,8 +52,8 @@ public class Main {
                     switch (escolhaOpcao2) {
                         case 1:
                             System.out.println("Digite a descrição do produto:");
-                            String descricaoProduto = scanner.nextLine();
-                            cadastrar.informarPrecoProduto(descricaoProduto);
+                            String nomeProduto1 = scanner.nextLine();
+                            cadastrar.informarPrecoProduto(nomeProduto1);
                             break;
                         case 2:
                             cadastrar.exibirProdutos();
@@ -48,9 +64,16 @@ public class Main {
                     }
                     break;
                 case 3:
-
+                    System.out.println("Digite a descrição do produto:");
+                    String nomeProduto2 = scanner.nextLine();
+                    cadastrar.menorpreco(nomeProduto2);
                     break;
                 case 4:
+                    System.out.println("Digite a descrição do produto:");
+                    String nomeProduto3 = scanner.nextLine();
+                    cadastrar.historicopreco(nomeProduto3);
+                    break;
+                case 5:
                     System.out.println("Saindo...");
                     break;
                 default:
